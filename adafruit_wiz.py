@@ -26,7 +26,10 @@ Any CircuitPython device that supports WIFI or Ethernet networking.
 """
 
 import json
-from typing import Tuple, Union
+try:
+    from typing import Tuple, Union
+except ImportError:
+    pass
 
 import adafruit_connection_manager
 
