@@ -26,6 +26,7 @@ Any CircuitPython device that supports WIFI or Ethernet networking.
 """
 
 import json
+
 try:
     from typing import Tuple, Union
 except ImportError:
