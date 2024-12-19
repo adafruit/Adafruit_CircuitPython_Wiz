@@ -38,7 +38,7 @@ or individual libraries can be installed using
 
 
 
-Works with any CircuitPython device that supports WIFI or Ethernet networking.
+Works with any CircuitPython device has built-in WIFI.
 
 `Purchase one from the Adafruit shop <http://www.adafruit.com/products/>`_
 

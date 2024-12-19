@@ -15,7 +15,15 @@ Implementation Notes
 
 **Hardware:**
 
-Any CircuitPython device that supports WIFI or Ethernet networking.
+CircuitPython devices with built-in WIFI
+
+* `Adafruit Feather ESP32-S2 <https://www.adafruit.com/product/5000>`_
+* `Adafruit Feather ESP32-S3 <https://www.adafruit.com/product/5477>`_
+* `Adafruit Feather ESP32-C6 <https://www.adafruit.com/product/5933>`_
+* `Raspberry Pi Pico W  <https://www.adafruit.com/product/5526>`_
+* `Raspberry Pi Pico 2W  <https://www.adafruit.com/product/6087>`_
+* `Adafruit Feather ESP32-S2 TFT <https://www.adafruit.com/product/5300>`_
+* `Adafruit Feather ESP32-S3 TFT <https://www.adafruit.com/product/5483>`_
 
 **Software and Dependencies:**
 
@@ -126,7 +134,6 @@ class WizConnectedLight:
     :param str ip: IP address of the Wiz connected light. Can be found in the smartphone app.
     :param int port: UDP port the Wiz connected light listens on. Default is 38899
     :param radio: WIFI radio object. It will attempt to use ``wifi.radio`` if not passed.
-        Pass Radio objects for ESP32SPI or Wiznet ethernet networking to use them.
     :param bool debug: Enable additional debugging output.
     """
 
