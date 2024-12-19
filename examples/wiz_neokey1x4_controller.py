@@ -5,6 +5,7 @@
 Demonstration of Wiz light control using a Neokey 1x4 QT I2C
 https://www.adafruit.com/product/4980
 """
+
 import json
 import time
 

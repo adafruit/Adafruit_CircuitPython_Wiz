@@ -5,6 +5,7 @@
 Basic demonstration of Wiz light control using 4 push buttons each
 wired to their own pin.
 """
+
 import time
 
 import board
