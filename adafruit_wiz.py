@@ -149,9 +149,7 @@ def scan(radio=None, timeout=3):
         data = json.dumps({"method": "getPilot", "params": {}})
         udp_message = bytes(data, "utf-8")
 
-        scan_socket.sendto(
-            udp_message, ("255.255.255.255", 38899)
-        )  # send UDP packet to udp_host:port
+        scan_socket.sendto(udp_message, ("255.255.255.255", 38899))
         scan_complete = False
         results = []
         while not scan_complete:
