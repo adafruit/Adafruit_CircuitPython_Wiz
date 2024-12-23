@@ -127,6 +127,47 @@ MODE_TEMPERATURE = 1
 MODE_SCENE = 2
 
 
+def scan(radio=None, timeout=3):
+    """
+    Scan the network for Wiz lights
+
+    :param radio: The wifi radio object
+    :param timeout: Time in seconds to wait for responses to the scan broadcast
+    :return: List of dictionaries containing info about found lights
+    """
+    if radio is None:
+        try:
+            import wifi
+        except ImportError:
+            raise RuntimeError(
+                "Must pass radio argument during initialization for non built-in wifi."
+            )
+        radio = wifi.radio
+    pool = adafruit_connection_manager.get_radio_socketpool(radio)
+    with pool.socket(pool.AF_INET, pool.SOCK_DGRAM) as scan_socket:
+        scan_socket.settimeout(timeout)
+        data = json.dumps({"method": "getPilot", "params": {}})
+        udp_message = bytes(data, "utf-8")
+
+        scan_socket.sendto(
+            udp_message, ("255.255.255.255", 38899)
+        )  # send UDP packet to udp_host:port
+        scan_complete = False
+        results = []
+        while not scan_complete:
+            try:
+                buf = bytearray(400)
+                data_len, (ip, port) = scan_socket.recvfrom_into(buf)
+                resp_json = json.loads(buf.rstrip(b"\x00").decode("utf-8"))
+                resp_json["ip"] = ip
+                results.append(resp_json)
+            except OSError:
+                # timeout
+                scan_complete = True
+                pass
+        return results
+
+
 class WizConnectedLight:
     """
     Helper class to control Wiz connected light over WIFI via UDP.
